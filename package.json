@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
+  "name": "fart-one-monitor-ngx",
   "version": "0.0.0",
-  "description": "Modular starter project for Angular 2 (and beyond) with statically typed build and AoT compilation",
+  "description": "Monitor web for fart-one beacons",
   "repository": {
-    "url": "https://github.com/mgechev/angular-seed"
+    "url": "https://github.com/fart-one/monitor-ngx"
   },
   "scripts": {
     "build.dev": "gulp build.dev --color --env-config dev",
