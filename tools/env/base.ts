@@ -1,8 +1,11 @@
 import { EnvConfig } from './env-config.interface';
 
 const BaseConfig: EnvConfig = {
-  // Sample API url
-  API: 'https://demo.com'
+  MQTT_SERVICE: {
+    hostname: 'broker.hivemq.com',
+    port: 8000,
+    path: '/mqtt'
+  }
 };
 
 export = BaseConfig;

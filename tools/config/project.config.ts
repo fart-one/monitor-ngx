@@ -53,6 +53,16 @@ export class ProjectConfig extends SeedConfig {
       }
     });
 
+    /* Add ngx-mqtt */
+    this.addPackageBundles({
+      name:'ngx-mqtt',
+      path:'node_modules/ngx-mqtt/bundles/ngx-mqtt.min.js',
+      packageMeta:{
+        main: 'index.js',
+        defaultExtension: 'js'
+      }
+    });
+
     /* Enable SCSS for project */
     this.ENABLE_SCSS = true;
 

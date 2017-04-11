@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NameListService } from '../shared/name-list/name-list.service';
+import { Observable } from 'rxjs/Observable';
+import { MqttMessage, MqttService } from 'ngx-mqtt';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -11,46 +12,39 @@ import { NameListService } from '../shared/name-list/name-list.service';
   styleUrls: ['home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  public myOtherMessage$: Observable<MqttMessage>;
+  public myMessage: string;
 
-  newName: string = '';
-  errorMessage: string;
-  names: any[] = [];
+  constructor(private _mqttService: MqttService) {
+    this._mqttService.connect();
 
-  /**
-   * Creates an instance of the HomeComponent with the injected
-   * NameListService.
-   *
-   * @param {NameListService} nameListService - The injected NameListService.
-   */
-  constructor(public nameListService: NameListService) {}
+    this._mqttService.onReconnect.subscribe(() => {
+      console.log('reconnect');
+    });
 
-  /**
-   * Get the names OnInit
-   */
-  ngOnInit() {
-    this.getNames();
+    this._mqttService.onError.subscribe(() => {
+      console.log('error');
+    });
+
+
   }
 
-  /**
-   * Handle the nameListService observable
-   */
-  getNames() {
-    this.nameListService.get()
-      .subscribe(
-        names => this.names = names,
-        error => this.errorMessage = <any>error
-      );
+  ngOnInit(): void {
+
+    this._mqttService.onConnect.subscribe(() => {
+      console.log('connected');
+      this._mqttService.observe('toilet/#').subscribe((message: MqttMessage) => {
+
+        console.log(message.payload.toString());
+        this.myMessage = message.payload.toString();
+      });
+      this.myOtherMessage$ = this._mqttService.observe('my/other/topic');
+    });
+
   }
 
-  /**
-   * Pushes a new name onto the names array
-   * @return {boolean} false to prevent default form submit behavior to refresh the page.
-   */
-  addName(): boolean {
-    // TODO: implement nameListService.post
-    this.names.push(this.newName);
-    this.newName = '';
-    return false;
+  public unsafePublish(topic: string, message: string): void {
+    this._mqttService.unsafePublish(topic, message, {qos: 1, retain: false});
   }
 
 }
