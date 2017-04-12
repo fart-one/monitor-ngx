@@ -3,7 +3,7 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MdButtonModule, } from '@angular/material';
-import { NameListService } from '../shared/name-list/name-list.service';
+import { ToiletBrokerService } from '../shared/toilet-broker/toilet-broker.service';
 
 @NgModule({
   imports: [
@@ -13,6 +13,6 @@ import { NameListService } from '../shared/name-list/name-list.service';
   ],
   declarations: [HomeComponent],
   exports: [HomeComponent],
-  providers: [NameListService]
+  providers: [ToiletBrokerService]
 })
 export class HomeModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MqttMessage, MqttService } from 'ngx-mqtt';
+import {ToiletBrokerService} from "../shared/toilet-broker/toilet-broker.service";
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -12,39 +13,20 @@ import { MqttMessage, MqttService } from 'ngx-mqtt';
   styleUrls: ['home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  public myOtherMessage$: Observable<MqttMessage>;
-  public myMessage: string;
 
-  constructor(private _mqttService: MqttService) {
-    this._mqttService.connect();
-
-    this._mqttService.onReconnect.subscribe(() => {
-      console.log('reconnect');
-    });
-
-    this._mqttService.onError.subscribe(() => {
-      console.log('error');
-    });
-
-
+  constructor(private _toiletBroker: ToiletBrokerService) {
+    this._toiletBroker.connect();
   }
 
   ngOnInit(): void {
 
-    this._mqttService.onConnect.subscribe(() => {
+    this._toiletBroker.onConnect.subscribe(() => {
       console.log('connected');
-      this._mqttService.observe('toilet/#').subscribe((message: MqttMessage) => {
+      this._toiletBroker.getToilet('+', '#').subscribe((message: MqttMessage) => {
 
         console.log(message.payload.toString());
-        this.myMessage = message.payload.toString();
       });
-      this.myOtherMessage$ = this._mqttService.observe('my/other/topic');
     });
 
   }
-
-  public unsafePublish(topic: string, message: string): void {
-    this._mqttService.unsafePublish(topic, message, {qos: 1, retain: false});
-  }
-
 }
