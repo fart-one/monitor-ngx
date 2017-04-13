@@ -4,10 +4,9 @@
     <md-card-title>{{ configuration.officeName }}</md-card-title>
   </md-card-header>
   <md-card-content>
-    <strong>{{ configuration.id }}</strong>
     <md-grid-list cols="2">
       <md-grid-tile *ngFor="let toiletConfiguration of configuration.toilets">
-        <fart-toilet [configuration]="toiletConfiguration"></fart-toilet>
+        <fart-toilet [officeId]="configuration.id" [configuration]="toiletConfiguration"></fart-toilet>
       </md-grid-tile>
     </md-grid-list>
   </md-card-content>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Config } from './shared/config/env.config';
 import './operators';
+import {ToiletBrokerService} from "./shared/toilet-broker/toilet-broker.service";
 
 /**
  * This class represents the main application component.
@@ -12,7 +13,9 @@ import './operators';
   styleUrls: ['app.component.css'],
 })
 export class AppComponent {
-  constructor() {
+  constructor(private _toiletService: ToiletBrokerService) {
     console.log('Environment config', Config);
+
+    this._toiletService.connect();
   }
 }
