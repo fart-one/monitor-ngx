@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MqttService, MqttMessage } from "ngx-mqtt";
 import { Config } from '../config/env.config';
+import { BeaconModel } from "./model/beacon.model";
 
 /**
  * This class provides aceess to MQTT broker and quick access to fart-one commication structure
@@ -15,13 +16,16 @@ export class ToiletBrokerService extends MqttService {
    * @param toiletId UID of toilet
    * @returns {Observable<MqttMessage>}
    */
-  public getToilet(officeId: string, toiletId:string): Observable<MqttMessage> {
+  public getToilet(officeId: string, toiletId:string): Observable<BeaconModel> {
 
     let filter = Config.TOILET_FILTER_FORMAT
       .replace('{officeId}', officeId)
       .replace('{toiletId}', toiletId);
 
-    return this.observe(filter);
+    return this
+      .observe(filter)
+      .map((response: MqttMessage) => JSON.parse(response.payload.toString()));
+
 
   }
 

@@ -3,7 +3,7 @@ import {MqttServiceOptions} from 'ngx-mqtt/src/mqtt.model';
 /**
  * Extends default config, for mqtt.js compatibility
  */
-export interface MqttServiceConfig extends MqttServiceOptions {
+export interface MqttServiceInterface extends MqttServiceOptions {
 
   /**
    * Is the WebSocket connection options. Default is {}. It's specific for WebSockets. For possible options have a look at: https://github.com/websockets/ws/blob/master/doc/ws.md.

@@ -1,17 +1,17 @@
 import { EnvConfig } from './env-config.interface';
-import { MqttServiceConfig } from "../../src/client/app/shared/config/mqtt-service.config";
-import { OfficeConfig } from "../../src/client/app/shared/config/office.config";
+import { MqttServiceInterface } from "../../src/client/app/shared/config/mqtt-service.interface";
+import { OfficeInterface } from "../../src/client/app/shared/config/office.interface";
 import { GenderEnum } from "../../src/client/app/shared/config/enum/gender.enum";
 
 const BaseConfig: EnvConfig = {
-  MQTT_SERVICE: <MqttServiceConfig>{
+  MQTT_SERVICE: <MqttServiceInterface>{
     hostname: 'broker.hivemq.com',
     port: 8000,
     path: '/mqtt'
   },
   TOILET_FILTER_FORMAT: 'toilet/{officeId}/{toiletId}',
   TOILET_LISTS: [
-    <OfficeConfig>{
+    <OfficeInterface>{
       id: "some office id",
       officeName: "some office name",
       toilets: [
