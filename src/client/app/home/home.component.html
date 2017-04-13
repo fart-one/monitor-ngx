@@ -1,3 +1,5 @@
-<div *ngFor="let officeConfiguration of offices">
-  <fart-office [configuration]="officeConfiguration"></fart-office>
-</div>
+<md-grid-list cols="2">
+  <md-grid-tile *ngFor="let officeConfiguration of offices">
+    <fart-office [configuration]="officeConfiguration"></fart-office>
+  </md-grid-tile>
+</md-grid-list>

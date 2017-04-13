@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ToiletInterface } from "../config/toilet.interface";
 
 /**
@@ -10,6 +10,10 @@ import { ToiletInterface } from "../config/toilet.interface";
   templateUrl: 'toilet.component.html',
   styleUrls: ['toilet.component.css'],
 })
-export class ToiletComponent {
+export class ToiletComponent implements OnInit {
   @Input() public configuration: ToiletInterface;
+
+  ngOnInit(): void {
+
+  }
 }
