@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { OfficeComponent } from './office/office.component';
+import { ToiletComponent } from './toilet/toilet.component';
+
 import { ToiletBrokerService } from './toilet-broker/toilet-broker.service';
 
 @NgModule({
@@ -14,11 +17,15 @@ import { ToiletBrokerService } from './toilet-broker/toilet-broker.service';
   ],
   declarations: [
     ToolbarComponent,
-    NavbarComponent
+    NavbarComponent,
+    OfficeComponent,
+    ToiletComponent
   ],
   exports: [
     ToolbarComponent,
     NavbarComponent,
+    OfficeComponent,
+    ToiletComponent,
     CommonModule,
     FormsModule,
     RouterModule

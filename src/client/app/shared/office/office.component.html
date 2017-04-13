@@ -1,0 +1,5 @@
+<h2>{{ configuration.officeName }}</h2>
+<strong>{{ configuration.id }}</strong>
+<div *ngFor="let toiletConfiguration of configuration.toilets">
+  <fart-toilet [configuration]="toiletConfiguration"></fart-toilet>
+</div>
