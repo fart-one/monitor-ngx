@@ -6,8 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MqttModule } from 'ngx-mqtt';
 
-// import { AlertModule } from 'ngx-bootstrap';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 

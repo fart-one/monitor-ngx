@@ -58,7 +58,16 @@ export class ProjectConfig extends SeedConfig {
       path: `node_modules/moment/moment.js`
     });
 
-    /* Add moment */
+    /* Add angualr moment */
+    this.addPackageBundles({
+      name: 'angular2-moment',
+      packageMeta: {
+        main: './index.js',
+        defaultExtension: 'js'
+      }
+    });
+
+    /* Add ngx-bootstrap */
     this.addPackageBundles({
       name: 'ngx-bootstrap',
       path: `node_modules/ngx-bootstrap`,
@@ -67,7 +76,6 @@ export class ProjectConfig extends SeedConfig {
         defaultExtension: 'js'
       }
     });
-
 
     /* Enable SCSS for project */
     this.ENABLE_SCSS = true;

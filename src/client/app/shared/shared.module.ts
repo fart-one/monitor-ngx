@@ -2,6 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MomentModule } from 'angular2-moment';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -14,6 +15,7 @@ import { ToiletBrokerService } from './toilet-broker/toilet-broker.service';
   imports: [
     CommonModule,
     RouterModule,
+    MomentModule
   ],
   declarations: [
     ToolbarComponent,

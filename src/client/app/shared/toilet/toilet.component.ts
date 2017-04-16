@@ -25,6 +25,8 @@ export class ToiletComponent implements OnInit {
   public ToiletStatusEnum:any = ToiletStatusEnum;
   public beaconObservable:Observable<BeaconModel>;
 
+  public lastChange:Date = new Date();
+
   private _lastStatus:ToiletStatusEnum = ToiletStatusEnum.Unknown;
 
   constructor(private _toiletSerivce: ToiletBrokerService) {
@@ -50,6 +52,7 @@ export class ToiletComponent implements OnInit {
       return;
     }
     this._lastStatus = data.status;
+    this.lastChange = new Date();
 
     //determinate audio file
     let soundFiles:any[] = [];
