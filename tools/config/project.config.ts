@@ -22,7 +22,6 @@ export class ProjectConfig extends SeedConfig {
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
-      // {src: '@angular/material/core/theming/prebuilt/indigo-pink.css', inject: true}
       // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
     ];
@@ -42,16 +41,6 @@ export class ProjectConfig extends SeedConfig {
       ...this.ROLLUP_NAMED_EXPORTS,
       //{'node_modules/immutable/dist/immutable.js': [ 'Map' ]},
     ];
-
-    /* Add Angular material package */
-    this.addPackageBundles({
-      name:'@angular/material',
-      path:'node_modules/@angular/material/bundles/material.umd.js',
-      packageMeta:{
-        main: 'index.js',
-        defaultExtension: 'js'
-      }
-    });
 
     /* Add ngx-mqtt */
     this.addPackageBundles({

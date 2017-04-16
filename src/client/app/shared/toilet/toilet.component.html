@@ -1,20 +1,12 @@
-<md-card>
-  <md-card-header>
-    <md-card-title>
-      <strong>{{configuration.toiletName}}</strong>
-      <div [ngSwitch]="configuration.toiletGender">
-        <span *ngSwitchCase="GenderEnum.Man">Man</span>
-        <span *ngSwitchCase="GenderEnum.Woman">Woman</span>
-        <span *ngSwitchCase="GenderEnum.ForDisabled">For disabled</span>
-        <span *ngSwitchDefault>Common</span>
-      </div>
-    </md-card-title>
-  </md-card-header>
-  <md-card-content>
-    <div [ngSwitch]="(data | async)?.status">
-      <span *ngSwitchCase="ToiletStatusEnum.Occupied">Occupied</span>
-      <span *ngSwitchCase="ToiletStatusEnum.Unoccupied">Free</span>
-      <span *ngSwitchDefault>Unknown</span>
-    </div>
-  </md-card-content>
-</md-card>
+<strong>{{configuration.toiletName}}</strong>
+<div [ngSwitch]="configuration.toiletGender">
+  <span *ngSwitchCase="GenderEnum.Man">Man</span>
+  <span *ngSwitchCase="GenderEnum.Woman">Woman</span>
+  <span *ngSwitchCase="GenderEnum.ForDisabled">For disabled</span>
+  <span *ngSwitchDefault>Common</span>
+</div>
+<div [ngSwitch]="(data | async)?.status">
+  <span *ngSwitchCase="ToiletStatusEnum.Occupied">Occupied</span>
+  <span *ngSwitchCase="ToiletStatusEnum.Unoccupied">Free</span>
+  <span *ngSwitchDefault>Unknown</span>
+</div>

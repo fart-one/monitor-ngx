@@ -6,5 +6,6 @@ import { ToiletInterface } from './toilet.interface';
 export interface OfficeInterface{
   id: string | number,
   officeName: string,
+  iconUrl?: string,
   toilets: ToiletInterface[]
 }

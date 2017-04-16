@@ -9,14 +9,11 @@ import { OfficeComponent } from './office/office.component';
 import { ToiletComponent } from './toilet/toilet.component';
 
 import { ToiletBrokerService } from './toilet-broker/toilet-broker.service';
-import { MdCardModule, MdGridListModule } from "@angular/material";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    MdGridListModule,
-    MdCardModule,
   ],
   declarations: [
     ToolbarComponent,
@@ -31,9 +28,7 @@ import { MdCardModule, MdGridListModule } from "@angular/material";
     ToiletComponent,
     CommonModule,
     FormsModule,
-    RouterModule,
-    MdGridListModule,
-    MdCardModule
+    RouterModule
   ]
 })
 export class SharedModule {
