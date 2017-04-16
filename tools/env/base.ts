@@ -44,6 +44,19 @@ const BaseConfig: EnvConfig = {
         })
       ]
     })
+  ],
+  TOILET_FREE_SOUNDS: [
+    '/assets/sound/free/1.mp3',
+    '/assets/sound/free/2.mp3'
+  ],
+  TOILET_OCCUPIED_SOUNDS: [
+    '/assets/sound/occupied/1.mp3',
+    '/assets/sound/occupied/2.mp3',
+    '/assets/sound/occupied/3.mp3',
+    '/assets/sound/occupied/4.mp3',
+    '/assets/sound/occupied/5.mp3',
+    '/assets/sound/occupied/6.mp3',
+    '/assets/sound/occupied/7.mp3'
   ]
 };
 

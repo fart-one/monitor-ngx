@@ -7,5 +7,7 @@ export interface EnvConfig {
   ENV?: string,
   MQTT_SERVICE?: MqttServiceInterface,
   TOILET_FILTER_FORMAT?: string,
-  TOILET_LISTS?: OfficeInterface[]
+  TOILET_LISTS?: OfficeInterface[],
+  TOILET_FREE_SOUNDS?: string[],
+  TOILET_OCCUPIED_SOUNDS?: string[]
 }

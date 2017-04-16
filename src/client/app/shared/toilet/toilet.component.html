@@ -1,13 +1,14 @@
 <div
   class="card alert alert-danger"
   [ngClass]="{
-    'alert-muted': (!(data | async)?.status || (data | async)?.status === ToiletStatusEnum.Unknown),
-    'alert-success': (data | async)?.status === ToiletStatusEnum.Free,
-    'alert-danger': (data | async)?.status === ToiletStatusEnum.Occupied
+    'alert-muted': (!(beaconObservable | async)?.status || (beaconObservable | async)?.status === ToiletStatusEnum.Unknown),
+    'alert-success': (beaconObservable | async)?.status === ToiletStatusEnum.Free,
+    'alert-danger': (beaconObservable | async)?.status === ToiletStatusEnum.Occupied
   }"
   style="width: 20rem;"
 >
-  <div [ngSwitch]="(data | async)?.status">
+  <div [ngSwitch]="(beaconObservable | async)?.status">
+  <div [ngSwitch]="(beaconObservable | async)?.status">
 
     <img
       *ngSwitchCase="ToiletStatusEnum.Occupied"
@@ -51,7 +52,7 @@
     <p class="card-text">
       <strong>Status</strong>
 
-      <span [ngSwitch]="(data | async)?.status">
+      <span [ngSwitch]="(beaconObservable | async)?.status">
         <span *ngSwitchCase="ToiletStatusEnum.Occupied">Occupied</span>
         <span *ngSwitchCase="ToiletStatusEnum.Free">Free</span>
         <span *ngSwitchDefault>Unknown</span>
