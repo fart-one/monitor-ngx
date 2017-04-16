@@ -5,14 +5,24 @@
     'text-success': (data | async)?.status === ToiletStatusEnum.Unoccupied,
     'text-danger': (data | async)?.status === ToiletStatusEnum.Occupied
   }">
-    <h4 class="card-title">{{configuration.toiletName}}</h4>
 
-    <div class="pull-right" [ngSwitch]="configuration.toiletGender">
-      <span *ngSwitchCase="GenderEnum.Man">Man</span>
-      <span *ngSwitchCase="GenderEnum.Woman">Woman</span>
-      <span *ngSwitchCase="GenderEnum.ForDisabled">For disabled</span>
-      <span *ngSwitchDefault>Common</span>
+    <div class="toilet-icon" [ngSwitch]="configuration.toiletGender">
+      <span *ngSwitchCase="GenderEnum.Man">
+        <img src="/assets/svg/male.svg"/>
+      </span>
+      <span *ngSwitchCase="GenderEnum.Woman">
+        <img src="/assets/svg/female.svg"/>
+      </span>
+      <span *ngSwitchCase="GenderEnum.ForDisabled">
+        <img src="/assets/svg/wheelchair.svg"/>
+      </span>
+      <span *ngSwitchDefault>
+        <img src="/assets/svg/male.svg"/>
+        <img src="/assets/svg/female.svg"/>
+      </span>
     </div>
+
+    <h4 class="card-title">{{configuration.toiletName}}</h4>
 
     <p class="card-text">
       <strong>Status</strong>
