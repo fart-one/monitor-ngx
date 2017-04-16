@@ -4,5 +4,6 @@
 export enum GenderEnum {
   Unspecified,
   Woman,
-  Man
+  Man,
+  ForDisabled
 }
