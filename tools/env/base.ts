@@ -25,6 +25,11 @@ const BaseConfig: EnvConfig = {
           id: 'some-toilet-12',
           toiletName: 'Woman toilet',
           toiletGender: GenderEnum.Woman
+        }),
+        (<ToiletInterface>{
+          id: 'some-toilet-13',
+          toiletName: 'Toilet for disabled',
+          toiletGender: GenderEnum.ForDisabled
         })
       ]
     }),

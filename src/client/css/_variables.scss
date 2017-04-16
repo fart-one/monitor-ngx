@@ -26,11 +26,11 @@
 //$gray-lighter:              #eceeef !default;
 //$gray-lightest:             #f7f7f9 !default;
 
-//$brand-primary:             #0275d8 !default;
-//$brand-success:             #5cb85c !default;
-//$brand-info:                #5bc0de !default;
-//$brand-warning:             #f0ad4e !default;
-//$brand-danger:              #d9534f !default;
+$brand-primary:             darken(#428bca, 6.5%); //#0275d8 !default;
+$brand-success:             rgb(92, 184, 92); //#5cb85c !default;
+$brand-info:                rgb(91, 192, 222); //#5bc0de !default;
+$brand-warning:             rgb(240, 173, 78); //#f0ad4e !default;
+$brand-danger:              rgb(217, 83, 79); //#d9534f !default;
 //$brand-inverse:             $gray-dark !default;
 
 
@@ -39,7 +39,7 @@
 // Quickly modify global styling by enabling or disabling optional features.
 
 $enable-flex:               true; // false !default;
-//$enable-rounded:            true !default;
+$enable-rounded:            false; //true !default;
 //$enable-shadows:            false !default;
 //$enable-gradients:          false !default;
 //$enable-transitions:        false !default;
@@ -554,7 +554,7 @@ $enable-flex:               true; // false !default;
 
 // Jumbotron
 
-//$jumbotron-padding:              2rem !default;
+$jumbotron-padding:              1rem; //2rem !default;
 //$jumbotron-bg:                   $gray-lighter !default;
 
 

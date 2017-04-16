@@ -1,3 +1,31 @@
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top img-fluid" src="http://placehold.it/350x150" alt="Card image cap">
+  <div class="card-block" [ngClass]="{
+    'text-muted': (!(data | async)?.status || (data | async)?.status === ToiletStatusEnum.Unknown),
+    'text-success': (data | async)?.status === ToiletStatusEnum.Unoccupied,
+    'text-danger': (data | async)?.status === ToiletStatusEnum.Occupied
+  }">
+    <h4 class="card-title">{{configuration.toiletName}}</h4>
+
+    <div class="pull-right" [ngSwitch]="configuration.toiletGender">
+      <span *ngSwitchCase="GenderEnum.Man">Man</span>
+      <span *ngSwitchCase="GenderEnum.Woman">Woman</span>
+      <span *ngSwitchCase="GenderEnum.ForDisabled">For disabled</span>
+      <span *ngSwitchDefault>Common</span>
+    </div>
+
+    <p class="card-text">
+      <strong>Status</strong>
+
+      <span [ngSwitch]="(data | async)?.status">
+        <span *ngSwitchCase="ToiletStatusEnum.Occupied">Occupied</span>
+        <span *ngSwitchCase="ToiletStatusEnum.Unoccupied">Free</span>
+        <span *ngSwitchDefault>Unknown</span>
+      </span>
+    </p>
+  </div>
+</div>
+<!--
 <strong>{{configuration.toiletName}}</strong>
 <div [ngSwitch]="configuration.toiletGender">
   <span *ngSwitchCase="GenderEnum.Man">Man</span>
@@ -10,3 +38,4 @@
   <span *ngSwitchCase="ToiletStatusEnum.Unoccupied">Free</span>
   <span *ngSwitchDefault>Unknown</span>
 </div>
+-->

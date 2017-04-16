@@ -1,5 +1,16 @@
-<div>
-  <div *ngFor="let officeConfiguration of offices">
-    <fart-office [configuration]="officeConfiguration"></fart-office>
+<div class="container">
+  <div class="row">
+
+    <div
+      class="col-12 col-lg-6"
+      *ngFor="let officeConfiguration of offices"
+    >
+      <div
+        class="jumbotron">
+        <fart-office
+          [configuration]="officeConfiguration"
+        ></fart-office>
+      </div>
+    </div>
   </div>
 </div>

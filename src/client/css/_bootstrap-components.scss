@@ -15,10 +15,10 @@
 
 // Core CSS
 @import "bootstrap-v4-dev/scss/reboot";
-//@import "bootstrap-v4-dev/scss/type";
-//@import "bootstrap-v4-dev/scss/images";
+@import "bootstrap-v4-dev/scss/type";
+@import "bootstrap-v4-dev/scss/images";
 //@import "bootstrap-v4-dev/scss/code";
-//@import "bootstrap-v4-dev/scss/grid";
+@import "bootstrap-v4-dev/scss/grid";
 //@import "bootstrap-v4-dev/scss/tables";
 //@import "bootstrap-v4-dev/scss/forms";
 //@import "bootstrap-v4-dev/scss/buttons";
@@ -31,11 +31,11 @@
 //@import "bootstrap-v4-dev/scss/custom-forms";
 //@import "bootstrap-v4-dev/scss/nav";
 //@import "bootstrap-v4-dev/scss/navbar";
-//@import "bootstrap-v4-dev/scss/card";
+@import "bootstrap-v4-dev/scss/card";
 //@import "bootstrap-v4-dev/scss/breadcrumb";
 //@import "bootstrap-v4-dev/scss/pagination";
 //@import "bootstrap-v4-dev/scss/tags";
-//@import "bootstrap-v4-dev/scss/jumbotron";
+@import "bootstrap-v4-dev/scss/jumbotron";
 //@import "bootstrap-v4-dev/scss/alert";
 //@import "bootstrap-v4-dev/scss/progress";
 //@import "bootstrap-v4-dev/scss/media";
