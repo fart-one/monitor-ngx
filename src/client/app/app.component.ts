@@ -12,7 +12,9 @@ import { Config, ToiletBrokerService } from './shared/index';
 })
 export class AppComponent {
   constructor(private _toiletService: ToiletBrokerService) {
-    console.log('Environment config', Config);
+    if (Config.ENV === 'DEV') {
+      console.log('Environment config', Config);
+    }
 
     this._toiletService.connect();
   }
