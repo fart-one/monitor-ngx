@@ -52,6 +52,23 @@ export class ProjectConfig extends SeedConfig {
       }
     });
 
+    /* Add moment */
+    this.addPackageBundles({
+      name: 'moment',
+      path: `node_modules/moment/moment.js`
+    });
+
+    /* Add moment */
+    this.addPackageBundles({
+      name: 'ngx-bootstrap',
+      path: `node_modules/ngx-bootstrap`,
+      packageMeta: {
+        main: 'bundles/ngx-bootstrap.umd.min.js',
+        defaultExtension: 'js'
+      }
+    });
+
+
     /* Enable SCSS for project */
     this.ENABLE_SCSS = true;
 

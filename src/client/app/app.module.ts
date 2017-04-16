@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MqttModule } from 'ngx-mqtt';
 
+// import { AlertModule } from 'ngx-bootstrap';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -19,6 +21,7 @@ import { ToiletBrokerService } from './shared/toilet-broker/index';
     BrowserModule,
     HttpModule,
     AppRoutingModule,
+    // AlertModule.forRoot(),
     AboutModule,
     HomeModule,
     BrowserAnimationsModule,
