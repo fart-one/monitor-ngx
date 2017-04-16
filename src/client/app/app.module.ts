@@ -3,30 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MqttModule } from 'ngx-mqtt';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
-import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
-import { SharedModule } from './shared/shared.module';
-import { ToiletBrokerService } from './shared/toilet-broker/index';
+import { SharedModule, ToiletBrokerService } from './shared/index';
+
+export function toiletBrokerFactory() {
+  return new ToiletBrokerService();
+}
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    // AlertModule.forRoot(),
-    AboutModule,
     HomeModule,
     BrowserAnimationsModule,
     SharedModule.forRoot(),
     MqttModule.forRoot({
       provide: ToiletBrokerService,
-      useFactory: () => new ToiletBrokerService()
+      useFactory: toiletBrokerFactory
     })
   ],
   declarations: [AppComponent],

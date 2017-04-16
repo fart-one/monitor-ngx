@@ -4,12 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MomentModule } from 'angular2-moment';
 
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { OfficeComponent } from './office/office.component';
 import { ToiletComponent } from './toilet/toilet.component';
 
-import { ToiletBrokerService } from './toilet-broker/toilet-broker.service';
+import { ToiletBrokerService } from './toilet-broker/index';
 
 @NgModule({
   imports: [
@@ -18,14 +16,10 @@ import { ToiletBrokerService } from './toilet-broker/toilet-broker.service';
     MomentModule
   ],
   declarations: [
-    ToolbarComponent,
-    NavbarComponent,
     OfficeComponent,
     ToiletComponent
   ],
   exports: [
-    ToolbarComponent,
-    NavbarComponent,
     OfficeComponent,
     ToiletComponent,
     CommonModule,

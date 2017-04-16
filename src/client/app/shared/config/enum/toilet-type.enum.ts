@@ -1,7 +1,7 @@
 /**
- * Describes toilet gender
+ * Describes toilet type
  */
-export enum GenderEnum {
+export enum ToiletTypeEnum {
   Unspecified,
   Woman,
   Man,

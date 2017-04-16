@@ -1,4 +1,4 @@
-import {MqttServiceOptions} from 'ngx-mqtt/src/mqtt.model';
+import { MqttServiceOptions } from 'ngx-mqtt/src/mqtt.model';
 
 /**
  * Extends default config, for mqtt.js compatibility
@@ -6,74 +6,76 @@ import {MqttServiceOptions} from 'ngx-mqtt/src/mqtt.model';
 export interface MqttServiceInterface extends MqttServiceOptions {
 
   /**
-   * Is the WebSocket connection options. Default is {}. It's specific for WebSockets. For possible options have a look at: https://github.com/websockets/ws/blob/master/doc/ws.md.
+   * Is the WebSocket connection options.
+   * Default is {}. It's specific for WebSockets.
+   * For possible options have a look at: https://github.com/websockets/ws/blob/master/doc/ws.md.
    */
-  wsOptions?: any,
+  wsOptions?: any;
 
   /**
    * Default 10 seconds, set to 0 to disable
    */
-  keepalive?: number,
+  keepalive?: number;
 
   /**
    * Reschedule ping messages after sending packets (default true)
    */
-  reschedulePings?: boolean
+  reschedulePings?: boolean;
 
   /**
    * Default: 'mqttjs_' + Math.random().toString(16).substr(2, 8)
    */
-  clientId?: string,
+  clientId?: string;
 
   /**
    * Default: 'MQTT'
    */
-  protocolId?: string,
+  protocolId?: string;
 
   /**
    * Default: 4
    */
-  protocolVersion?: number
+  protocolVersion?: number;
 
   /**
    * Default true, set to false to receive QoS 1 and 2 messages while offline
    */
-  clean?: boolean,
+  clean?: boolean;
 
   /**
    * Default: 1000 milliseconds, interval between two reconnections
    */
-  reconnectPeriod?: number,
+  reconnectPeriod?: number;
 
   /**
    * 30 * 1000 milliseconds, time to wait before a CONNACK is received
    */
-  connectTimeout?: number,
+  connectTimeout?: number;
 
   /**
    * The username required by your broker, if any
    */
-  username?: string,
+  username?: string;
 
   /**
    * The password required by your broker, if any
    */
-  password?: string,
+  password?: string;
 
   /**
    * A Store for the incoming packets
    */
-  incomingStore?: any,
+  incomingStore?: any;
 
   /**
    * A Store for the outgoing packets
    */
-  outgoingStore?: any,
+  outgoingStore?: any;
 
   /**
    * If connection is broken, queue outgoing QoS zero messages (default true)
    */
-  queueQoSZero?: boolean,
+  queueQoSZero?: boolean;
 
   /**
    * A message that will sent by the broker automatically when the client disconnect badly. The format is:
@@ -82,11 +84,12 @@ export interface MqttServiceInterface extends MqttServiceOptions {
    *   qos?: the QoS
    *   retain?: the retain flag
    */
-  will?: any,
+  will?: any;
 
   /**
    * Optional (url, options, client) => url function For ws/wss protocols only.
    * Can be used to implement signing urls which upon reconnect can have become expired.
    */
-  transformWsUrl?: any
+  transformWsUrl?: any;
+
 }

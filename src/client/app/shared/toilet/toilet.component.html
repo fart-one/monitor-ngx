@@ -8,7 +8,6 @@
   style="width: 20rem;"
 >
 
-
   <div [ngSwitch]="(beaconObservable | async)?.status">
 
     <img
@@ -31,11 +30,12 @@
 
   </div>
 
-  <span class="tag tag-default">Uptime: {{lastChange| amTimeAgo:true }}</span>
+  <span class="tag tag-default">Uptime: <strong>{{lastChange| amTimeAgo:true }}</strong></span>
+  <span class="tag tag-default">Last update: <strong>{{lastUpdate| amTimeAgo:true }}</strong></span>
 
   <div class="card-block">
 
-    <div class="toilet-icon" [ngSwitch]="configuration.toiletGender">
+    <div class="toilet-icon" [ngSwitch]="configuration?.toiletType">
       <span *ngSwitchCase="GenderEnum.Man">
         <img src="/assets/svg/male.svg"/>
       </span>
@@ -51,7 +51,7 @@
       </span>
     </div>
 
-    <h4 class="card-title">{{configuration.toiletName}}</h4>
+    <h4 class="card-title">{{configuration?.toiletName}}</h4>
 
     <p class="card-text">
       <strong>Status</strong>

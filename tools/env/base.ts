@@ -1,8 +1,8 @@
 import { EnvConfig } from './env-config.interface';
-import { MqttServiceInterface } from "../../src/client/app/shared/config/mqtt-service.interface";
-import { OfficeInterface } from "../../src/client/app/shared/config/office.interface";
-import { GenderEnum } from "../../src/client/app/shared/config/enum/gender.enum";
-import { ToiletInterface } from "../../src/client/app/shared/config/toilet.interface";
+import { MqttServiceInterface } from '../../src/client/app/shared/config/mqtt-service.interface';
+import { OfficeInterface } from '../../src/client/app/shared/config/office.interface';
+import { ToiletTypeEnum } from '../../src/client/app/shared/config/enum/toilet-type.enum';
+import { ToiletInterface } from '../../src/client/app/shared/config/toilet.interface';
 
 const BaseConfig: EnvConfig = {
   MQTT_SERVICE: <MqttServiceInterface>{
@@ -19,17 +19,17 @@ const BaseConfig: EnvConfig = {
         (<ToiletInterface>{
           id: 'some-toilet-11',
           toiletName: 'Man toilet',
-          toiletGender: GenderEnum.Man
+          toiletType: ToiletTypeEnum.Man
         }),
         (<ToiletInterface>{
           id: 'some-toilet-12',
           toiletName: 'Woman toilet',
-          toiletGender: GenderEnum.Woman
+          toiletType: ToiletTypeEnum.Woman
         }),
         (<ToiletInterface>{
           id: 'some-toilet-13',
           toiletName: 'Toilet for disabled',
-          toiletGender: GenderEnum.ForDisabled
+          toiletType: ToiletTypeEnum.ForDisabled
         })
       ]
     }),
@@ -40,7 +40,7 @@ const BaseConfig: EnvConfig = {
         (<ToiletInterface>{
           id: 'some-toilet',
           toiletName: 'All gender toilet',
-          toiletGender: GenderEnum.Unspecified
+          toiletType: ToiletTypeEnum.Unspecified
         })
       ]
     })

@@ -1,12 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ToiletInterface } from "../config/toilet.interface";
-import { ToiletBrokerService } from "../toilet-broker/toilet-broker.service";
-import { MqttConnectionState } from "ngx-mqtt";
-import { GenderEnum } from "../config/enum/gender.enum";
-import { ToiletStatusEnum } from "../toilet-broker/enum/toilet-status.enum";
-import { Observable} from "rxjs";
-import { BeaconModel } from "../toilet-broker/model/beacon.model";
-import { Config } from "../config/env.config";
+import { MqttConnectionState } from 'ngx-mqtt';
+import { Observable } from 'rxjs';
+import {
+  Config,
+  ToiletInterface,
+  ToiletTypeEnum,
+  ToiletStatusEnum,
+  BeaconModel
+} from '../index';
+import { ToiletBrokerService } from '../toilet-broker/index';
 
 /**
  * This class represents the navigation bar component.
@@ -18,41 +20,92 @@ import { Config } from "../config/env.config";
   styleUrls: ['toilet.component.css'],
 })
 export class ToiletComponent implements OnInit {
+
+  /**
+   * Id of the office
+   */
   @Input() public officeId: string|number;
+
+  /**
+   * Configuration for the office
+   */
   @Input() public configuration: ToiletInterface;
 
-  public GenderEnum:any = GenderEnum;
+  /**
+   * View model
+   * @type {ToiletTypeEnum}
+   */
+  public GenderEnum:any = ToiletTypeEnum;
+
+  /**
+   * View model
+   * @type {ToiletStatusEnum}
+   */
   public ToiletStatusEnum:any = ToiletStatusEnum;
+
+  /**
+   * Current beacon status observable
+   */
   public beaconObservable:Observable<BeaconModel>;
 
+  /**
+   * View model for status update
+   * @type {Date}
+   */
+  public lastUpdate:Date = new Date();
+
+  /**
+   * View model for status change
+   * @type {Date}
+   */
   public lastChange:Date = new Date();
 
+  /**
+   * Store last toilet status
+   * @type {ToiletStatusEnum}
+   * @private
+   */
   private _lastStatus:ToiletStatusEnum = ToiletStatusEnum.Unknown;
 
-  constructor(private _toiletSerivce: ToiletBrokerService) {
+  /**
+   *
+   * @param _toiletService
+   */
+  constructor(private _toiletService: ToiletBrokerService) {
   }
 
   ngOnInit(): void {
-    this._toiletSerivce
+    this._toiletService
       .state
-      .filter((serviceState:MqttConnectionState) => serviceState == MqttConnectionState.CONNECTED)
+      .filter((serviceState:MqttConnectionState) => serviceState === MqttConnectionState.CONNECTED)
       .subscribe(() => {
 
-        this.beaconObservable = this._toiletSerivce
+        // bind toilet observable
+        this.beaconObservable = this._toiletService
           .getToilet(<string>this.officeId, <string>this.configuration.id);
 
-        this.beaconObservable.subscribe(this._playSound);
+        this.beaconObservable.subscribe((data: BeaconModel) => {
+
+          // check last status
+          if (this._lastStatus === data.status) {
+            return;
+          }
+
+          // store last data
+          this._lastStatus = data.status;
+          this.lastChange = new Date();
+
+          //play sound
+          this._playSound(data);
+        });
+
+        this.beaconObservable.subscribe(() => {
+          this.lastUpdate = new Date();
+        });
       });
   }
 
   private _playSound(data: BeaconModel) {
-
-    // check last status
-    if (this._lastStatus === data.status) {
-      return;
-    }
-    this._lastStatus = data.status;
-    this.lastChange = new Date();
 
     //determinate audio file
     let soundFiles:any[] = [];
@@ -75,6 +128,5 @@ export class ToiletComponent implements OnInit {
     let audio = new Audio(audioFile);
     audio.play();
   }
-
 
 }

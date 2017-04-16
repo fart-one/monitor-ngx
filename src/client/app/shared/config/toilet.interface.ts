@@ -1,10 +1,21 @@
-import { GenderEnum } from './enum/gender.enum';
+import { ToiletTypeEnum } from './enum/toilet-type.enum';
 
 /**
  * Toilet configuration
  */
 export interface ToiletInterface {
-  id: string | number,
-  toiletName?: string,
-  toiletGender?: GenderEnum
+  /**
+   * Id of toilet (a.k.a. device Id
+   */
+  id: string | number;
+
+  /**
+   * Optional toilet name
+   */
+  toiletName?: string;
+
+  /**
+   * toilet
+   */
+  toiletType?: ToiletTypeEnum;
 }

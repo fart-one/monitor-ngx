@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { OfficeInterface } from "../config/office.interface";
+import { OfficeInterface } from '../index';
 
 @Component({
   moduleId: module.id,

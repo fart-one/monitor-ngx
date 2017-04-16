@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Config } from './shared/config/env.config';
-import './operators';
-import {ToiletBrokerService} from "./shared/toilet-broker/toilet-broker.service";
+import { Config, ToiletBrokerService } from './shared/index';
 
 /**
  * This class represents the main application component.
