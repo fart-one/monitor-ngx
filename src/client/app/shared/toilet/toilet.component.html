@@ -1,11 +1,35 @@
-<div class="card" style="width: 20rem;">
-  <img class="card-img-top img-fluid" src="http://placehold.it/350x150" alt="Card image cap">
-  <div class="card-block" [ngClass]="{
-    'text-muted': (!(data | async)?.status || (data | async)?.status === ToiletStatusEnum.Unknown),
-    'text-success': (data | async)?.status === ToiletStatusEnum.Unoccupied,
-    'text-danger': (data | async)?.status === ToiletStatusEnum.Occupied
-  }">
+<div
+  class="card alert alert-danger"
+  [ngClass]="{
+    'alert-muted': (!(data | async)?.status || (data | async)?.status === ToiletStatusEnum.Unknown),
+    'alert-success': (data | async)?.status === ToiletStatusEnum.Free,
+    'alert-danger': (data | async)?.status === ToiletStatusEnum.Occupied
+  }"
+  style="width: 20rem;"
+>
+  <div [ngSwitch]="(data | async)?.status">
 
+    <img
+      *ngSwitchCase="ToiletStatusEnum.Occupied"
+      class="card-img-top img-fluid"
+      src="/assets/svg/status-occupied.svg"
+    />
+
+    <img
+      *ngSwitchCase="ToiletStatusEnum.Free"
+      class="card-img-top img-fluid"
+      src="/assets/svg/status-free.svg"
+    />
+
+    <img
+      *ngSwitchDefault
+      class="card-img-top img-fluid"
+      src="/assets/svg/status-unknown.svg"
+    />
+
+  </div>
+
+  <div class="card-block">
     <div class="toilet-icon" [ngSwitch]="configuration.toiletGender">
       <span *ngSwitchCase="GenderEnum.Man">
         <img src="/assets/svg/male.svg"/>
@@ -29,23 +53,9 @@
 
       <span [ngSwitch]="(data | async)?.status">
         <span *ngSwitchCase="ToiletStatusEnum.Occupied">Occupied</span>
-        <span *ngSwitchCase="ToiletStatusEnum.Unoccupied">Free</span>
+        <span *ngSwitchCase="ToiletStatusEnum.Free">Free</span>
         <span *ngSwitchDefault>Unknown</span>
       </span>
     </p>
   </div>
 </div>
-<!--
-<strong>{{configuration.toiletName}}</strong>
-<div [ngSwitch]="configuration.toiletGender">
-  <span *ngSwitchCase="GenderEnum.Man">Man</span>
-  <span *ngSwitchCase="GenderEnum.Woman">Woman</span>
-  <span *ngSwitchCase="GenderEnum.ForDisabled">For disabled</span>
-  <span *ngSwitchDefault>Common</span>
-</div>
-<div [ngSwitch]="(data | async)?.status">
-  <span *ngSwitchCase="ToiletStatusEnum.Occupied">Occupied</span>
-  <span *ngSwitchCase="ToiletStatusEnum.Unoccupied">Free</span>
-  <span *ngSwitchDefault>Unknown</span>
-</div>
--->

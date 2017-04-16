@@ -3,6 +3,6 @@
  */
 export enum ToiletStatusEnum {
   Unknown = 0,
-  Unoccupied = 10,
+  Free = 10,
   Occupied = 20
 }
