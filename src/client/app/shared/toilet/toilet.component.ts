@@ -9,6 +9,7 @@ import {
   BeaconModel
 } from '../index';
 import { ToiletBrokerService } from '../toilet-broker/index';
+import 'rxjs/add/operator/skip';
 
 /**
  * This class represents the navigation bar component.
@@ -84,24 +85,24 @@ export class ToiletComponent implements OnInit {
         this.beaconObservable = this._toiletService
           .getToilet(<string>this.officeId, <string>this.configuration.id);
 
-        this.beaconObservable.subscribe((data: BeaconModel) => {
+        // get last update
+        this.beaconObservable
+          .subscribe(() => this.lastUpdate = new Date());
 
-          // check last status
-          if (this._lastStatus === data.status) {
-            return;
-          }
+        // filter only status changes
+        let beaconChangeObservable:Observable<BeaconModel> = this.beaconObservable
+          .filter((data: BeaconModel) => this._lastStatus !== data.status);
 
-          // store last data
+        // store last data
+        beaconChangeObservable.subscribe((data: BeaconModel) => {
           this._lastStatus = data.status;
           this.lastChange = new Date();
-
-          //play sound
-          this._playSound(data);
         });
 
-        this.beaconObservable.subscribe(() => {
-          this.lastUpdate = new Date();
-        });
+        //play sound
+        beaconChangeObservable
+          .subscribe((data: BeaconModel) => this._playSound(data));
+
       });
   }
 
