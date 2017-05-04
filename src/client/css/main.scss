@@ -1,2 +1,32 @@
 @import 'variables';
-@import 'bootstrap-components';
+@import 'normalize';
+
+body, html {
+
+}
+
+body {
+  background-color: $background-color;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+  font-weight: normal;
+  color: $h-color;
+}
+
+.text-muted {
+  color: #999999;
+}
+
+.small {
+  font-size: 85%;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}

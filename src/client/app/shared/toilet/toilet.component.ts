@@ -94,14 +94,18 @@ export class ToiletComponent implements OnInit {
           .filter((data: BeaconModel) => this._lastStatus !== data.status);
 
         // store last data
-        beaconChangeObservable.subscribe((data: BeaconModel) => {
-          this._lastStatus = data.status;
-          this.lastChange = new Date();
-        });
-
-        //play sound
         beaconChangeObservable
-          .subscribe((data: BeaconModel) => this._playSound(data));
+          .subscribe((data: BeaconModel) => {
+            this._lastStatus = data.status;
+            this.lastChange = new Date();
+          });
+
+        // play sound
+        beaconChangeObservable
+          .skip(1)
+          .subscribe((data: BeaconModel) => {
+            this._playSound(data);
+          });
 
       });
   }

@@ -1,16 +1,87 @@
+@import '../../../css/variables';
+
 :host {
-  .card {
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1rem 0;
+  display: inline-block;
+  width: 320px;
+  border-radius: 8px;
+  background: #FFFFFF;
+  margin: 0px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  mark {
+    background: transparent;
   }
 
-  h4 {
-    display: inline-block;
+  img {
+    max-width: 100%;
   }
 
-  .toilet-icon img{
-    float: right;
-    width: 2rem;
+  h2 {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1.3em;
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+  }
+
+  .foot {
+    font-size: 90%;
+    p {
+      margin: 1.5em 10px 1em;
+    }
+  }
+
+  .panel {
+    position: relative;
+    padding: 10px 10px 25px;
+    background-image: url(../assets/svg/background-unknown.svg);
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+
+    .status-label {
+      margin: 7px auto;
+      padding: 0.4em;
+      background: #fff;
+      width: 55%;
+      border-radius: 8px;
+      font-weight: 300;
+      box-shadow: 0px 12px 20px -10px rgba(0,0,0,0.5);
+
+      mark {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .status-unknown {
+    mark {
+      color: $status-unknown;
+    }
+  }
+
+  .status-free {
+    mark {
+      color: $status-free;
+    }
+
+    .panel {
+      background-image: url(../assets/svg/background-free.svg);
+    }
+  }
+
+  .status-occupied {
+    mark {
+      color: $status-occupied;
+    }
+
+    .panel {
+      background-image: url(../assets/svg/background-occupied.svg);
+    }
   }
 }

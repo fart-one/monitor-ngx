@@ -1,66 +1,54 @@
 <div
-  class="card alert alert-danger"
   [ngClass]="{
-    'alert-muted': (!(beaconObservable | async)?.status || (beaconObservable | async)?.status === ToiletStatusEnum.Unknown),
-    'alert-success': (beaconObservable | async)?.status === ToiletStatusEnum.Free,
-    'alert-danger': (beaconObservable | async)?.status === ToiletStatusEnum.Occupied
+    'status-unknown': (!(beaconObservable | async)?.status || (beaconObservable | async)?.status === ToiletStatusEnum.Unknown),
+    'status-free': (beaconObservable | async)?.status === ToiletStatusEnum.Free,
+    'status-occupied': (beaconObservable | async)?.status === ToiletStatusEnum.Occupied
   }"
-  style="width: 20rem;"
 >
+  <h2>{{configuration?.toiletName}}</h2>
 
-  <div [ngSwitch]="(beaconObservable | async)?.status">
+  <p [ngSwitch]="configuration?.toiletType" class="text-muted small">
+    <span *ngSwitchCase="GenderEnum.Man">
+      For man
+    </span>
+    <span *ngSwitchCase="GenderEnum.Woman">
+      For woman
+    </span>
+    <span *ngSwitchCase="GenderEnum.ForDisabled">
+      For Disabled
+    </span>
+    <span *ngSwitchDefault>
+      Common
+    </span>
+  </p>
 
-    <img
-      *ngSwitchCase="ToiletStatusEnum.Occupied"
-      class="card-img-top img-fluid"
-      src="/assets/svg/status-occupied.svg"
-    />
-
-    <img
-      *ngSwitchCase="ToiletStatusEnum.Free"
-      class="card-img-top img-fluid"
-      src="/assets/svg/status-free.svg"
-    />
-
-    <img
-      *ngSwitchDefault
-      class="card-img-top img-fluid"
-      src="/assets/svg/status-unknown.svg"
-    />
-
-  </div>
-
-  <span class="tag tag-default">Uptime: <strong>{{lastChange| amTimeAgo:true }}</strong></span>
-  <span class="tag tag-default">Last update: <strong>{{lastUpdate| amTimeAgo:true }}</strong></span>
-
-  <div class="card-block">
-
-    <div class="toilet-icon" [ngSwitch]="configuration?.toiletType">
-      <span *ngSwitchCase="GenderEnum.Man">
-        <img src="/assets/svg/male.svg"/>
-      </span>
-      <span *ngSwitchCase="GenderEnum.Woman">
-        <img src="/assets/svg/female.svg"/>
-      </span>
-      <span *ngSwitchCase="GenderEnum.ForDisabled">
-        <img src="/assets/svg/wheelchair.svg"/>
-      </span>
-      <span *ngSwitchDefault>
-        <img src="/assets/svg/male.svg"/>
-        <img src="/assets/svg/female.svg"/>
-      </span>
+  <div class="panel">
+    <div class="toilet-symbol">
+      <img
+        [src]="
+          '/assets/svg/'
+          + (GenderEnum[configuration?.toiletType] || GenderEnum.Unspecified).toLowerCase()
+          + '-'
+          + ToiletStatusEnum[(beaconObservable | async)?.status || ToiletStatusEnum.Unknown].toLowerCase()
+          + '.svg'
+          "/>
     </div>
 
-    <h4 class="card-title">{{configuration?.toiletName}}</h4>
+    <div class="status-label text-muted" [ngSwitch]="(beaconObservable | async)?.status">
+      STATUS:
+      <mark *ngSwitchCase="ToiletStatusEnum.Occupied">Occupied</mark>
+      <mark *ngSwitchCase="ToiletStatusEnum.Free">Free</mark>
+      <mark *ngSwitchDefault>Unknown</mark>
+    </div>
+  </div>
 
-    <p class="card-text">
-      <strong>Status</strong>
-
-      <span [ngSwitch]="(beaconObservable | async)?.status">
-        <span *ngSwitchCase="ToiletStatusEnum.Occupied">Occupied</span>
-        <span *ngSwitchCase="ToiletStatusEnum.Free">Free</span>
-        <span *ngSwitchDefault>Unknown</span>
-      </span>
+  <div class="foot text-muted">
+    <p class="pull-left small">
+      Uptime: {{lastChange| amTimeAgo:true }}
+    </p>
+    <p class="pull-right small">
+      Last check: {{lastUpdate| amTimeAgo:true }}
     </p>
   </div>
+
 </div>
